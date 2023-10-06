@@ -14,3 +14,25 @@ function possibleMoves(x, y){
     return validMoves;
 
 }
+function findShortestPath(start, end){
+    let queue = [{node: start, path: [start]}];
+    let visited = {};
+    while(queue.length > 0){
+        let current = queue.shift();
+        let node = current.node;
+        let path = current.path;
+        let nodeKey = `${node.x},${node.y}`
+        if(visited[nodeKey]){
+            continue;
+        }
+        visited[nodeKey] = true;
+        if(node.x === end.x && node.y === end.y){
+            return path;
+        }
+        let nextMoves = possibleMoves(node.x, node.y);
+        for(let move of nextMoves){
+            queue.push({node: move, path: [...path, move] });
+        }
+    }
+}
+console.log(findShortestPath({x: 3,y: 3}, {x: 3, y: 4}));
