@@ -1,0 +1,1 @@
+(()=>{const r=Array.from({length:8},(()=>Array.from({length:8},(()=>!1))));console.table(r)})();
